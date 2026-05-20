@@ -1,5 +1,15 @@
 [
   {
+    "id": "digital-twin",
+    "name": "Digital Twin Theory",
+    "status": "tested",
+    "category": ["systems", "ai-agents", "science"],
+    "summary": "A synchronized digital representation of a real-world system that enables monitoring, simulation, prediction, and optimization.",
+    "tags": ["digital-twin", "simulation", "cyber-physical-systems", "feedback-loops"],
+    "applications": ["manufacturing", "AI agents", "healthcare", "smart cities", "mission planning"],
+    "path": "theories/systems/digital-twin.md"
+  },
+  {
     "id": "double-crux",
     "name": "Double Crux",
     "status": "partially-tested",
