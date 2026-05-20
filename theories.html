@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Theories • Agent Theories</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #020617;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .card {
+      background: #111827;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #1e293b;
+      font-size: 0.8rem;
+    }
+    a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Theories</h1>
+
+  <div class="grid">
+    <div class="card">
+      <h2><a href="./theories/systems/digital-twin.md">Digital Twin Theory</a></h2>
+      <p>
+        A synchronized digital representation of a real-world system
+        used for monitoring, simulation, prediction, and optimization.
+      </p>
+      <span class="status">tested</span>
+    </div>
+
+    <div class="card">
+      <h2>Stigmergy</h2>
+      <p>
+        Coordination through environmental signals without centralized control.
+      </p>
+      <span class="status">tested</span>
+    </div>
+
+    <div class="card">
+      <h2>Double Crux</h2>
+      <p>
+        A structured disagreement resolution method focused on core belief pivots.
+      </p>
+      <span class="status">partially-tested</span>
+    </div>
+
+    <div class="card">
+      <h2>Efficient Market Hypothesis</h2>
+      <p>
+        Asset prices reflect all available information.
+      </p>
+      <span class="status">disputed</span>
+    </div>
+  </div>
+</body>
+</html>
