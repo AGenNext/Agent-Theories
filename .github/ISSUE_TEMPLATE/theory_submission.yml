@@ -1,0 +1,44 @@
+name: Theory Submission
+about: Submit a new theory to the registry
+labels:
+  - theory
+body:
+  - type: input
+    id: theory_name
+    attributes:
+      label: Theory name
+      placeholder: Example Theory
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Evidence status
+      options:
+        - tested
+        - partially-tested
+        - untested
+        - disputed
+        - deprecated
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: Explain the theory in plain language.
+
+  - type: textarea
+    id: claims
+    attributes:
+      label: Core claims
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or references
+
+  - type: textarea
+    id: criticism
+    attributes:
+      label: Criticism and limitations
