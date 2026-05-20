@@ -1,0 +1,38 @@
+[
+  {
+    "id": "double-crux",
+    "name": "Double Crux",
+    "status": "partially-tested",
+    "category": ["cognition", "society"],
+    "summary": "A structured disagreement resolution method focused on identifying core belief pivots.",
+    "tags": ["reasoning", "debate", "epistemology"],
+    "applications": ["human coordination", "agent negotiation"]
+  },
+  {
+    "id": "stigmergy",
+    "name": "Stigmergy",
+    "status": "tested",
+    "category": ["systems", "ai-agents"],
+    "summary": "Coordination through environmental signals without centralized control.",
+    "tags": ["coordination", "emergence", "multi-agent-systems"],
+    "applications": ["swarm systems", "open collaboration"]
+  },
+  {
+    "id": "simulation-selection",
+    "name": "Simulation Selection Theory",
+    "status": "untested",
+    "category": ["ai-agents", "science"],
+    "summary": "Speculative idea that intelligent systems preferentially preserve simulations that optimize long-term adaptive value.",
+    "tags": ["simulation", "speculative", "selection"],
+    "applications": ["long-term AI planning", "philosophy"]
+  },
+  {
+    "id": "efficient-market-hypothesis",
+    "name": "Efficient Market Hypothesis",
+    "status": "disputed",
+    "category": ["economics"],
+    "summary": "Asset prices reflect all available information, limiting persistent arbitrage opportunities.",
+    "tags": ["finance", "markets", "economics"],
+    "applications": ["trading", "risk modeling"]
+  }
+]
