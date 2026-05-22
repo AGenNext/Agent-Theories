@@ -1,0 +1,33 @@
+---
+const { references = [] } = Astro.props;
+---
+
+{references.length > 0 && (
+  <section class="citations" aria-labelledby="references-heading">
+    <h2 id="references-heading">Authoritative References</h2>
+    <ol>
+      {references.map((reference) => (
+        <li>
+          <a href={reference.url} rel="noopener noreferrer" target="_blank">
+            {reference.title}
+          </a>
+          {reference.source_type && <span> — {reference.source_type}</span>}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+<style>
+  .citations {
+    margin-top: 48px;
+    padding: 24px;
+    border-radius: 14px;
+    background: #111827;
+  }
+
+  .citations li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+</style>
