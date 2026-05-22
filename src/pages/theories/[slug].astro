@@ -35,7 +35,7 @@ const { Content } = await theory.render();
         padding: 40px 20px;
       }
 
-      .meta {
+      .meta, .section {
         background: #111827;
         padding: 20px;
         border-radius: 14px;
@@ -70,6 +70,10 @@ const { Content } = await theory.render();
       p, li {
         line-height: 1.7;
       }
+
+      ul {
+        padding-left: 20px;
+      }
     </style>
   </head>
 
@@ -94,11 +98,82 @@ const { Content } = await theory.render();
           <strong>Confidence:</strong> {(theory.data.confidence_score * 100).toFixed(0)}%
         </div>
 
+        <div class="metric">
+          <strong>Validation:</strong> {theory.data.validation_status}
+        </div>
+
         <div>
           {theory.data.tags.map((tag) => (
             <span class="tag">{tag}</span>
           ))}
         </div>
+      </div>
+
+      <div class="section">
+        <h2>Testing and Validation</h2>
+
+        {theory.data.testability && (
+          <p><strong>Testability:</strong> {theory.data.testability}</p>
+        )}
+
+        {theory.data.testing_methods?.length > 0 && (
+          <>
+            <h3>Testing Methods</h3>
+            <ul>
+              {theory.data.testing_methods.map((method) => (
+                <li>{method}</li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {theory.data.falsifiable_predictions?.length > 0 && (
+          <>
+            <h3>Falsifiable Predictions</h3>
+            <ul>
+              {theory.data.falsifiable_predictions.map((prediction) => (
+                <li>{prediction}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+
+      <div class="section">
+        <h2>Applications and Safety</h2>
+
+        {theory.data.application_domains?.length > 0 && (
+          <>
+            <h3>Application Domains</h3>
+            <ul>
+              {theory.data.application_domains.map((domain) => (
+                <li>{domain}</li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {theory.data.observed_outcomes?.length > 0 && (
+          <>
+            <h3>Observed Outcomes</h3>
+            <ul>
+              {theory.data.observed_outcomes.map((outcome) => (
+                <li>{outcome}</li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {theory.data.safety_considerations?.length > 0 && (
+          <>
+            <h3>Safety Considerations</h3>
+            <ul>
+              {theory.data.safety_considerations.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
 
       <article>
