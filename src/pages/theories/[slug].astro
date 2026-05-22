@@ -50,6 +50,15 @@ const { Content } = await theory.render();
         background: #1e293b;
       }
 
+      .metric {
+        display: inline-block;
+        margin-right: 12px;
+        margin-top: 12px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: #0f172a;
+      }
+
       a {
         color: #60a5fa;
       }
@@ -73,9 +82,17 @@ const { Content } = await theory.render();
 
         <p>{theory.data.summary}</p>
 
-        <p>
+        <div class="metric">
           <strong>Status:</strong> {theory.data.status}
-        </p>
+        </div>
+
+        <div class="metric">
+          <strong>Review:</strong> {theory.data.review_status}
+        </div>
+
+        <div class="metric">
+          <strong>Confidence:</strong> {(theory.data.confidence_score * 100).toFixed(0)}%
+        </div>
 
         <div>
           {theory.data.tags.map((tag) => (
