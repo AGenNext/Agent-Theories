@@ -26,16 +26,21 @@ assumptions:
   - The feedback loop between physical and digital systems is timely enough for the intended use.
 evidence_level: high
 references:
-  - title: Digital Twin - Wikipedia overview and bibliography
-    url: https://en.wikipedia.org/wiki/Digital_twin
   - title: Digital Twin: Enabling Technologies, Challenges and Open Research
-    url: https://arxiv.org/abs/1911.01276
-  - title: Digital Twin: Values, Challenges and Enablers
-    url: https://arxiv.org/abs/1910.01719
-  - title: TiLA: Twin-in-the-Loop Architecture for Cyber-Physical Production Systems
-    url: https://arxiv.org/abs/2003.09370
-  - title: Digital Twin: Where do humans fit in?
-    url: https://arxiv.org/abs/2301.03040
+    source_type: peer-reviewed review article
+    url: https://ieeexplore.ieee.org/document/8972429
+  - title: Digital Twin Driven Smart Manufacturing
+    source_type: peer-reviewed journal article
+    url: https://doi.org/10.1016/j.procir.2019.02.115
+  - title: ISO 23247 Digital Twin Framework for Manufacturing
+    source_type: international standard
+    url: https://www.iso.org/standard/75066.html
+  - title: NIST Smart Manufacturing Systems Design and Analysis Program
+    source_type: government research institute
+    url: https://www.nist.gov/programs-projects/smart-manufacturing-systems-design-and-analysis
+  - title: NASA Modeling, Simulation, Information Technology and Processing Roadmap
+    source_type: government technical roadmap
+    url: https://www.nasa.gov/wp-content/uploads/2015/01/501321main_ta11-msitp-draft-nov2010-a1.pdf
 related_theories:
   - stigmergy
 criticisms:
@@ -50,7 +55,7 @@ applications:
   - AI agent simulation
   - Mission planning
 license_note: >
-  This article is original text written for Agent Theories. It summarizes and credits external sources without copying their protected expression. Linked sources retain their own licenses and copyrights.
+  This article is original explanatory text written for Agent Theories. It cites authoritative sources for attribution and further reading. It does not copy diagrams, figures, tables, proprietary definitions, abstracts, or extended passages from referenced works. External sources retain their own licenses, copyrights, and terms of use.
 ---
 
 # Digital Twin Theory
@@ -77,9 +82,9 @@ This theory applies across engineering, healthcare, robotics, AI agents, logisti
 
 ## Historical roots
 
-The practical roots of digital twins are usually traced through aerospace, product lifecycle management, simulation, and cyber-physical systems. NASA’s earlier use of high-fidelity simulations for space missions, including Apollo-era mission support, is often cited as a precursor. The modern conceptual model is commonly associated with Michael Grieves’ early-2000s product lifecycle management framing, while the phrase “digital twin” became widely associated with later NASA and engineering usage.
+The practical roots of digital twins come from aerospace, product lifecycle management, simulation, manufacturing systems, and cyber-physical systems. NASA technical roadmaps and engineering literature discuss the need for integrated simulation and high-fidelity system representations. Modern manufacturing standards such as ISO 23247 formalize digital twin frameworks for manufacturing contexts.
 
-This repository credits those conceptual lineages rather than claiming a single inventor. The article does not reproduce licensed diagrams or text from those sources.
+This repository credits those conceptual lineages rather than claiming a single inventor. The article does not reproduce licensed diagrams, tables, figures, definitions, or extended source text from those works.
 
 ## Core mechanism
 
@@ -174,18 +179,22 @@ A system should not be called a digital twin unless it can answer most of these 
 
 Digital Twin Theory is a foundational entry because it bridges humans, agents, simulations, real-world systems, and feedback loops. Many future theories in this repository can be represented, tested, or operationalized through digital twins.
 
-## Credits and references
+## Credits and authoritative references
 
-This article credits the broader digital twin research and engineering community, especially the conceptual lineage associated with Michael Grieves, NASA engineering usage, product lifecycle management, cyber-physical systems, and recent review literature on digital twin technologies.
+This article credits the broader digital twin research and engineering community, including peer-reviewed review literature, international standards work, government technical roadmaps, manufacturing systems research, and cyber-physical systems research.
 
-Sources consulted include:
+Authoritative sources for background and further reading include:
 
-- Digital Twin overview and bibliography: https://en.wikipedia.org/wiki/Digital_twin
-- Fuller, Fan, Day, and Barlow, “Digital Twin: Enabling Technologies, Challenges and Open Research”: https://arxiv.org/abs/1911.01276
-- Rasheed, San, and Kvamsdal, “Digital Twin: Values, Challenges and Enablers”: https://arxiv.org/abs/1910.01719
-- Park, Easwaran, and Andalam, “TiLA: Twin-in-the-Loop Architecture for Cyber-Physical Production Systems”: https://arxiv.org/abs/2003.09370
-- Agrawal, Thiel, Jain, Singh, and Fischer, “Digital Twin: Where do humans fit in?”: https://arxiv.org/abs/2301.03040
+- Fuller, Fan, Day, and Barlow, “Digital Twin: Enabling Technologies, Challenges and Open Research,” IEEE Access, 2020: https://ieeexplore.ieee.org/document/8972429
+- Tao, Zhang, Liu, and Nee, “Digital Twin Driven Smart Manufacturing,” Procedia CIRP, 2019: https://doi.org/10.1016/j.procir.2019.02.115
+- ISO 23247, “Automation systems and integration — Digital twin framework for manufacturing”: https://www.iso.org/standard/75066.html
+- NIST Smart Manufacturing Systems Design and Analysis Program: https://www.nist.gov/programs-projects/smart-manufacturing-systems-design-and-analysis
+- NASA Modeling, Simulation, Information Technology and Processing Roadmap: https://www.nasa.gov/wp-content/uploads/2015/01/501321main_ta11-msitp-draft-nov2010-a1.pdf
+
+## Source quality note
+
+Wikipedia is intentionally not used as an authoritative source for this theory. For scientific and technical entries, Agent Theories should rely on peer-reviewed literature, standards bodies, official technical documents, government research institutes, university publications, and recognized domain experts.
 
 ## License and reuse note
 
-This page is original explanatory text for Agent Theories. It links to external references for attribution and further reading. Do not copy diagrams, tables, proprietary definitions, or extended passages from referenced works unless their license explicitly allows reuse and attribution requirements are followed.
+This page is original explanatory text for Agent Theories. It links to external references for attribution and further reading. It does not copy diagrams, tables, figures, proprietary definitions, abstracts, or extended passages from referenced works. External sources retain their own licenses, copyrights, and terms of use. Future contributors should only copy external material when the source license explicitly allows reuse and all attribution, share-alike, notice, and modification requirements are followed.
