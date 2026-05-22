@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const theories = await getCollection('theories');
+
+  return theories.map((theory) => ({
+    params: { slug: theory.slug },
+    props: { theory }
+  }));
+}
+
+const { theory } = Astro.props;
+const { Content } = await theory.render();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{theory.data.name} • Agent Theories</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #020617;
+        color: #e2e8f0;
+        margin: 0;
+      }
+
+      main {
+        max-width: 900px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+
+      .meta {
+        background: #111827;
+        padding: 20px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+      }
+
+      .tag {
+        display: inline-block;
+        margin: 4px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #1e293b;
+      }
+
+      a {
+        color: #60a5fa;
+      }
+
+      h1, h2, h3 {
+        color: #f8fafc;
+      }
+
+      p, li {
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <a href="/Agent-Theories/theories">← All theories</a>
+
+      <div class="meta">
+        <h1>{theory.data.name}</h1>
+
+        <p>{theory.data.summary}</p>
+
+        <p>
+          <strong>Status:</strong> {theory.data.status}
+        </p>
+
+        <div>
+          {theory.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <article>
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>
