@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+
+const theories = await getCollection('theories');
+const searchIndex = theories.map((theory) => ({
+  id: theory.data.id,
+  slug: theory.slug,
+  name: theory.data.name,
+  status: theory.data.status,
+  summary: theory.data.summary,
+  category: theory.data.category,
+  tags: theory.data.tags,
+  applications: theory.data.applications,
+  url: `/Agent-Theories/theories/${theory.slug}`
+}));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Theories • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #020617; color: #e2e8f0; margin: 0; padding: 30px; }
+      main { max-width: 1000px; margin: auto; }
+      input, select { width: 100%; box-sizing: border-box; margin: 8px 0 16px; padding: 12px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+      .card { background: #111827; padding: 20px; border-radius: 14px; }
+      .pill { display: inline-block; margin: 4px 4px 0 0; padding: 5px 9px; border-radius: 999px; background: #1e293b; font-size: 0.85rem; }
+      a { color: #60a5fa; }
+      .muted { color: #94a3b8; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="/Agent-Theories/">← Home</a></p>
+      <h1>Search Theories</h1>
+      <p class="muted">Search by theory name, summary, status, category, tag, application, or ID.</p>
+
+      <label for="query">Search</label>
+      <input id="query" type="search" placeholder="Try: digital twin, systems, tested, simulation" />
+
+      <label for="status">Status filter</label>
+      <select id="status">
+        <option value="">All statuses</option>
+        <option value="tested">tested</option>
+        <option value="partially-tested">partially-tested</option>
+        <option value="untested">untested</option>
+        <option value="disputed">disputed</option>
+        <option value="deprecated">deprecated</option>
+      </select>
+
+      <p id="count" class="muted"></p>
+      <div id="results" class="grid"></div>
+    </main>
+
+    <script define:vars={{ searchIndex }}>
+      const queryInput = document.getElementById('query');
+      const statusInput = document.getElementById('status');
+      const results = document.getElementById('results');
+      const count = document.getElementById('count');
+
+      function normalize(value) {
+        return String(value || '').toLowerCase();
+      }
+
+      function searchable(theory) {
+        return normalize([
+          theory.id,
+          theory.name,
+          theory.status,
+          theory.summary,
+          ...(theory.category || []),
+          ...(theory.tags || []),
+          ...(theory.applications || [])
+        ].join(' '));
+      }
+
+      function render() {
+        const q = normalize(queryInput.value).trim();
+        const status = statusInput.value;
+
+        const filtered = searchIndex.filter((theory) => {
+          const matchesQuery = !q || searchable(theory).includes(q);
+          const matchesStatus = !status || theory.status === status;
+          return matchesQuery && matchesStatus;
+        });
+
+        count.textContent = `${filtered.length} result${filtered.length === 1 ? '' : 's'}`;
+        results.innerHTML = filtered.map((theory) => `
+          <article class="card">
+            <h2><a href="${theory.url}">${theory.name}</a></h2>
+            <p>${theory.summary}</p>
+            <p><strong>Status:</strong> ${theory.status}</p>
+            <div>
+              ${(theory.category || []).map((item) => `<span class="pill">${item}</span>`).join('')}
+              ${(theory.tags || []).map((item) => `<span class="pill">${item}</span>`).join('')}
+            </div>
+          </article>
+        `).join('');
+      }
+
+      queryInput.addEventListener('input', render);
+      statusInput.addEventListener('change', render);
+      render();
+    </script>
+  </body>
+</html>
