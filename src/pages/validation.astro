@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+const theories = await getCollection('theories');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theory Validation • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #020617; color: #e2e8f0; margin: 0; padding: 30px; }
+      main { max-width: 1100px; margin: auto; }
+      .card { background: #111827; padding: 22px; border-radius: 14px; margin-bottom: 18px; }
+      .pill { display: inline-block; margin: 4px; padding: 5px 9px; border-radius: 999px; background: #1e293b; font-size: 0.85rem; }
+      a { color: #60a5fa; }
+      h1, h2 { color: #f8fafc; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="/Agent-Theories/">← Home</a></p>
+      <h1>Theory Validation Dashboard</h1>
+      <p>This page tracks whether theories are testable, validated, applied, bounded, and safe to operationalize.</p>
+
+      {theories.map((theory) => (
+        <article class="card">
+          <h2><a href={`/Agent-Theories/theories/${theory.slug}`}>{theory.data.name}</a></h2>
+          <p>{theory.data.summary}</p>
+          <p><strong>Status:</strong> {theory.data.status}</p>
+          <p><strong>Validation:</strong> {theory.data.validation_status}</p>
+          <p><strong>Confidence:</strong> {Math.round((theory.data.confidence_score || 0) * 100)}%</p>
+          <p><strong>Testability:</strong> {theory.data.testability || 'Not yet specified'}</p>
+          <p><strong>Testing methods:</strong></p>
+          <div>{(theory.data.testing_methods || []).map((method) => <span class="pill">{method}</span>)}</div>
+          <p><strong>Application domains:</strong></p>
+          <div>{(theory.data.application_domains || theory.data.applications || []).map((domain) => <span class="pill">{domain}</span>)}</div>
+          <p><strong>Boundary conditions:</strong></p>
+          <ul>{(theory.data.boundary_conditions || []).map((item) => <li>{item}</li>)}</ul>
+          <p><strong>Safety considerations:</strong></p>
+          <ul>{(theory.data.safety_considerations || []).map((item) => <li>{item}</li>)}</ul>
+        </article>
+      ))}
+    </main>
+  </body>
+</html>
