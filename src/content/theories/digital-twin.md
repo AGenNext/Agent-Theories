@@ -2,6 +2,8 @@
 id: digital-twin
 name: Digital Twin Theory
 status: tested
+review_status: expert-reviewed
+confidence_score: 0.87
 category:
   - systems
   - ai-agents
