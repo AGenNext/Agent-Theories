@@ -1,0 +1,47 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const filePath = path.resolve('theories/systems/digital-twin.md');
+const raw = fs.readFileSync(filePath, 'utf-8');
+const body = raw.replace(/^---[\s\S]*?---\s*/, '');
+const html = body
+  .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+  .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+  .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  .replace(/^> (.*)$/gm, '<blockquote>$1</blockquote>')
+  .replace(/^- (.*)$/gm, '<li>$1</li>')
+  .split('\n\n')
+  .map((block) => {
+    if (block.startsWith('<h') || block.startsWith('<blockquote') || block.startsWith('<li>') || block.includes('| --- |')) return block;
+    if (block.trim().startsWith('|')) return `<pre>${block}</pre>`;
+    if (!block.trim()) return '';
+    return `<p>${block}</p>`;
+  })
+  .join('\n');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Twin Theory • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #020617; color: #e2e8f0; margin: 0; }
+      main { max-width: 900px; margin: auto; padding: 40px 20px; }
+      a { color: #60a5fa; }
+      h1, h2, h3 { color: #f8fafc; }
+      p, li { line-height: 1.7; }
+      blockquote { border-left: 4px solid #60a5fa; padding-left: 18px; color: #cbd5e1; }
+      pre { white-space: pre-wrap; background: #111827; padding: 16px; border-radius: 12px; overflow-x: auto; }
+      .back { display: inline-block; margin-bottom: 24px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/Agent-Theories/theories">← All theories</a>
+      <article set:html={html} />
+    </main>
+  </body>
+</html>
