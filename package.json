@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node tests/validate-theories.mjs",
+    "test:build": "npm run test && npm run build"
   },
   "dependencies": {
     "@astrojs/mdx": "latest",
     "astro": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gray-matter": "latest"
+  }
 }
