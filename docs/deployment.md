@@ -30,3 +30,7 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Deployment trigger
+
+Last deployment trigger note: refresh Pages deployment from `main`.
