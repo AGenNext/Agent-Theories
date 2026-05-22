@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+
+const theories = await getCollection('theories');
+const graph = {
+  nodes: theories.map((theory) => ({
+    id: theory.data.id,
+    name: theory.data.name,
+    status: theory.data.status,
+    confidence: theory.data.confidence_score,
+    url: `/Agent-Theories/theories/${theory.slug}`
+  })),
+  edges: theories.flatMap((theory) =>
+    (theory.data.related_theories || []).map((target) => ({
+      source: theory.data.id,
+      target,
+      relationship: 'related'
+    }))
+  )
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Theory Graph • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #020617; color: #e2e8f0; }
+      main { max-width: 1100px; margin: auto; padding: 30px; }
+      canvas { width: 100%; height: 620px; background: #0f172a; border-radius: 16px; display: block; }
+      a { color: #60a5fa; }
+      .hint { color: #94a3b8; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="/Agent-Theories/graph">← Static graph</a></p>
+      <h1>Interactive Theory Graph</h1>
+      <p class="hint">Nodes are theories. Edges are declared relationships. Click a node to open its theory page.</p>
+      <canvas id="graph" width="1100" height="620"></canvas>
+    </main>
+
+    <script define:vars={{ graph }}>
+      const canvas = document.getElementById('graph');
+      const ctx = canvas.getContext('2d');
+      const nodes = graph.nodes.map((node, index) => ({
+        ...node,
+        x: 150 + (index % 5) * 180,
+        y: 140 + Math.floor(index / 5) * 160,
+        r: 28
+      }));
+      const nodeById = new Map(nodes.map((node) => [node.id, node]));
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#334155';
+        for (const edge of graph.edges) {
+          const source = nodeById.get(edge.source);
+          const target = nodeById.get(edge.target);
+          if (!source || !target) continue;
+          ctx.beginPath();
+          ctx.moveTo(source.x, source.y);
+          ctx.lineTo(target.x, target.y);
+          ctx.stroke();
+        }
+
+        for (const node of nodes) {
+          ctx.beginPath();
+          ctx.fillStyle = '#2563eb';
+          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#e2e8f0';
+          ctx.font = '14px Arial';
+          ctx.textAlign = 'center';
+          ctx.fillText(node.name, node.x, node.y + node.r + 20);
+          ctx.font = '12px Arial';
+          ctx.fillStyle = '#94a3b8';
+          ctx.fillText(`${node.status} • ${Math.round((node.confidence || 0) * 100)}%`, node.x, node.y + node.r + 38);
+        }
+      }
+
+      canvas.addEventListener('click', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const x = (event.clientX - rect.left) * scaleX;
+        const y = (event.clientY - rect.top) * scaleY;
+        const hit = nodes.find((node) => Math.hypot(node.x - x, node.y - y) <= node.r);
+        if (hit) window.location.href = hit.url;
+      });
+
+      draw();
+    </script>
+  </body>
+</html>
