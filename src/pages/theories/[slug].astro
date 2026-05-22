@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import CitationList from '../../components/CitationList.astro';
 
 export async function getStaticPaths() {
   const theories = await getCollection('theories');
@@ -86,6 +87,8 @@ const { Content } = await theory.render();
       <article>
         <Content />
       </article>
+
+      <CitationList references={theory.data.references} />
     </main>
   </body>
 </html>
