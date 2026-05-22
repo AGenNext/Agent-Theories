@@ -1,0 +1,60 @@
+name: Theory Review
+about: Request review of an existing theory entry
+labels:
+  - review
+  - theory
+body:
+  - type: input
+    id: theory_id
+    attributes:
+      label: Theory ID
+      description: The stable ID of the theory being reviewed.
+      placeholder: digital-twin
+    validations:
+      required: true
+
+  - type: dropdown
+    id: review_type
+    attributes:
+      label: Review type
+      options:
+        - source-quality
+        - evidence-strength
+        - domain-expert-review
+        - license-review
+        - safety-review
+        - editorial-review
+    validations:
+      required: true
+
+  - type: textarea
+    id: review_summary
+    attributes:
+      label: Review summary
+      description: Summarize the review finding in plain language.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence_notes
+    attributes:
+      label: Evidence notes
+      description: Mention missing sources, weak claims, stronger references, or disputes.
+
+  - type: dropdown
+    id: proposed_review_status
+    attributes:
+      label: Proposed review status
+      options:
+        - draft
+        - submitted
+        - reviewed
+        - expert-reviewed
+        - needs-revision
+
+  - type: input
+    id: proposed_confidence
+    attributes:
+      label: Proposed confidence score
+      description: A number from 0.0 to 1.0.
+      placeholder: "0.87"
