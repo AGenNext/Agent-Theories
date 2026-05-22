@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+const theories = await getCollection('theories');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare Theories • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #020617; color: #e2e8f0; margin: 0; padding: 30px; }
+      table { width: 100%; border-collapse: collapse; background: #111827; }
+      th, td { padding: 14px; border: 1px solid #1e293b; vertical-align: top; }
+      th { background: #0f172a; }
+      a { color: #60a5fa; }
+    </style>
+  </head>
+  <body>
+    <h1>Compare Theories</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Theory</th>
+          <th>Status</th>
+          <th>Confidence</th>
+          <th>Evidence</th>
+          <th>Applications</th>
+        </tr>
+      </thead>
+      <tbody>
+        {theories.map((theory) => (
+          <tr>
+            <td>
+              <a href={`/Agent-Theories/theories/${theory.slug}`}>
+                {theory.data.name}
+              </a>
+            </td>
+            <td>{theory.data.status}</td>
+            <td>{Math.round((theory.data.confidence_score || 0) * 100)}%</td>
+            <td>{theory.data.evidence_level || 'unknown'}</td>
+            <td>{(theory.data.applications || []).join(', ')}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </body>
+</html>
