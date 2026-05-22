@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+
+const theories = await getCollection('theories');
+
+const nodes = theories.map((theory) => ({
+  id: theory.data.id,
+  name: theory.data.name,
+  status: theory.data.status,
+  summary: theory.data.summary,
+  url: `/Agent-Theories/theories/${theory.slug}`
+}));
+
+const edges = theories.flatMap((theory) =>
+  (theory.data.related_theories || []).map((target) => ({
+    source: theory.data.id,
+    target,
+    relationship: 'related'
+  }))
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theory Graph • Agent Theories</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #020617; color: #e2e8f0; margin: 0; padding: 30px; }
+      main { max-width: 1100px; margin: auto; }
+      a { color: #60a5fa; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .panel { background: #111827; padding: 22px; border-radius: 14px; }
+      .node, .edge { border-bottom: 1px solid #1e293b; padding: 14px 0; }
+      .pill { display: inline-block; padding: 4px 9px; border-radius: 999px; background: #1e293b; font-size: 0.85rem; }
+      code { background: #0f172a; padding: 2px 5px; border-radius: 5px; }
+      @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="/Agent-Theories/">← Home</a></p>
+      <h1>Theory Graph</h1>
+      <p>
+        A human-readable view of theory relationships. Agents can use the JSON endpoint
+        at <code>/api/graph.json</code>.
+      </p>
+
+      <div class="grid">
+        <section class="panel">
+          <h2>Nodes</h2>
+          {nodes.map((node) => (
+            <article class="node">
+              <h3><a href={node.url}>{node.name}</a></h3>
+              <p>{node.summary}</p>
+              <span class="pill">{node.status}</span>
+            </article>
+          ))}
+        </section>
+
+        <section class="panel">
+          <h2>Relationships</h2>
+          {edges.length === 0 ? (
+            <p>No relationships declared yet.</p>
+          ) : (
+            edges.map((edge) => (
+              <article class="edge">
+                <p><code>{edge.source}</code> → <code>{edge.target}</code></p>
+                <span class="pill">{edge.relationship}</span>
+              </article>
+            ))
+          )}
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
