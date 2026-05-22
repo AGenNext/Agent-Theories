@@ -1,0 +1,94 @@
+---
+const featuredTheory = {
+  title: 'Digital Twin Theory',
+  href: '/Agent-Theories/theories/systems/digital-twin',
+  description:
+    'A synchronized digital representation of a real-world system used for monitoring, simulation, prediction, and optimization.'
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Theories</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #020617;
+        color: #e2e8f0;
+        margin: 0;
+      }
+      header {
+        padding: 90px 20px;
+        text-align: center;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+      }
+      h1 {
+        font-size: 3.5rem;
+      }
+      .buttons a {
+        display: inline-block;
+        margin: 12px;
+        padding: 14px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        background: #2563eb;
+        color: white;
+      }
+      section {
+        max-width: 1000px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+      .card {
+        background: #111827;
+        padding: 24px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+      }
+      a {
+        color: #60a5fa;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Agent Theories</h1>
+      <p>
+        A public registry of theories for humans and AI agents.
+      </p>
+
+      <div class="buttons">
+        <a href="/Agent-Theories/theories">Browse Theories</a>
+        <a href="https://github.com/AGenNext/Agent-Theories">GitHub</a>
+      </div>
+    </header>
+
+    <section>
+      <div class="card">
+        <h2>Featured Theory</h2>
+        <h3>
+          <a href={featuredTheory.href}>{featuredTheory.title}</a>
+        </h3>
+        <p>{featuredTheory.description}</p>
+      </div>
+
+      <div class="card">
+        <h2>For Humans</h2>
+        <p>
+          Read structured long-form theory articles with evidence,
+          criticisms, references, and applications.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>For Agents</h2>
+        <p>
+          Use machine-readable metadata and searchable theory indexes
+          for planning, reasoning, retrieval, and simulation.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
