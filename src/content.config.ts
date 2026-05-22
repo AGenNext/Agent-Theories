@@ -6,6 +6,8 @@ const theories = defineCollection({
     id: z.string(),
     name: z.string(),
     status: z.enum(['tested', 'partially-tested', 'untested', 'disputed', 'deprecated']),
+    review_status: z.enum(['draft', 'submitted', 'reviewed', 'expert-reviewed', 'needs-revision']).default('draft'),
+    confidence_score: z.number().min(0).max(1).default(0),
     category: z.array(z.string()),
     created: z.coerce.date(),
     updated: z.coerce.date(),
