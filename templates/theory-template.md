@@ -2,6 +2,9 @@
 id: theory-unique-id
 name: Theory Name
 status: tested
+review_status: submitted
+confidence_score: 0.3
+validation_status: early-validation
 category:
   - ai-agents
   - cognition
@@ -20,9 +23,31 @@ claims:
 assumptions:
   - Assumption 1
   - Assumption 2
+testability: >
+  Explain how the theory can be tested or falsified.
+falsifiable_predictions:
+  - Prediction 1
+  - Prediction 2
+testing_methods:
+  - experiment
+  - simulation
+failed_tests:
+  - Known failed or weakly supported tests
+boundary_conditions:
+  - Conditions where the theory may not apply
+safety_considerations:
+  - Risks or misuse scenarios
+application_domains:
+  - Multi-agent systems
+  - Organizations
+observed_outcomes:
+  - Observed benefit or operational outcome
+misuse_cases:
+  - Harmful or misleading application pattern
 evidence_level: medium
 references:
-  - title: Paper or Source
+  - title: Peer-reviewed paper or authoritative source
+    source_type: peer-reviewed research
     url: https://example.com
 related_theories:
   - another-theory-id
@@ -47,13 +72,25 @@ Describe how the theory claims the world works.
 
 List what the theory predicts.
 
-## Evidence
+## Testability
 
-Summarize empirical, operational, or anecdotal support.
+Explain what evidence would support or falsify the theory.
+
+## Validation
+
+Describe known experiments, simulations, benchmarks, deployments, or historical evidence.
+
+## Applications
+
+Describe how the theory is used in practice.
 
 ## Failure Modes and Criticism
 
 Document known limitations, disagreements, and counterexamples.
+
+## Safety Considerations
+
+Describe misuse risks, ethical concerns, or operational hazards.
 
 ## Implications for Agents
 
