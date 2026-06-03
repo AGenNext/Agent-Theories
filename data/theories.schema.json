@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agennext.github.io/Agent-Theories/data/theories.schema.json",
+  "title": "Agent Theories Registry Entry",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "name",
+      "status",
+      "category",
+      "summary",
+      "tags",
+      "applications"
+    ],
+    "properties": {
+      "@context": {
+        "description": "Optional JSON-LD context for graph publication.",
+        "oneOf": [
+          { "type": "string", "format": "uri" },
+          { "type": "object" }
+        ]
+      },
+      "@type": {
+        "description": "Recommended JSON-LD type. Prefer CreativeWork plus DefinedTerm when publishing theory records.",
+        "oneOf": [
+          { "type": "string" },
+          { "type": "array", "items": { "type": "string" } }
+        ]
+      },
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "name": { "type": "string", "minLength": 3 },
+      "status": {
+        "type": "string",
+        "enum": ["tested", "partially-tested", "untested", "disputed", "deprecated"]
+      },
+      "review_status": {
+        "type": "string",
+        "enum": ["draft", "submitted", "in-review", "accepted", "needs-revision", "rejected"]
+      },
+      "validation_status": {
+        "type": "string",
+        "enum": ["not-evaluated", "early-validation", "benchmarked", "replicated", "failed", "deprecated"]
+      },
+      "confidence_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "evidence_level": {
+        "type": "string",
+        "enum": ["none", "low", "medium", "high", "very-high"]
+      },
+      "category": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "enum": ["ai-agents", "cognition", "economics", "governance", "science", "society", "systems"]
+        }
+      },
+      "summary": { "type": "string", "minLength": 20 },
+      "tags": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "applications": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "path": { "type": "string" },
+      "claims": { "type": "array", "items": { "type": "string" } },
+      "assumptions": { "type": "array", "items": { "type": "string" } },
+      "falsifiable_predictions": { "type": "array", "items": { "type": "string" } },
+      "testing_methods": { "type": "array", "items": { "type": "string" } },
+      "boundary_conditions": { "type": "array", "items": { "type": "string" } },
+      "safety_considerations": { "type": "array", "items": { "type": "string" } },
+      "related_theories": { "type": "array", "items": { "type": "string" } },
+      "references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["title", "source_type"],
+          "properties": {
+            "title": { "type": "string" },
+            "source_type": {
+              "type": "string",
+              "enum": ["peer-reviewed research", "book", "standard", "benchmark", "dataset", "field report", "historical source", "web source", "other"]
+            },
+            "url": { "type": "string", "format": "uri" },
+            "doi": { "type": "string" },
+            "year": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}
